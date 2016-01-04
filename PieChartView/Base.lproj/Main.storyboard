@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Data Source-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UpH-WL-gbg" customClass="SRPieChartView">
+                                <rect key="frame" x="150" y="70" width="300" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="UpH-WL-gbg" secondAttribute="height" multiplier="1:1" id="NgV-Wk-DNo"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="qM3-w4-UkF"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="SJl-gI-LUT"/>
+                                </connections>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMI-Rx-bhz" userLabel="PieChart Button">
+                                <rect key="frame" x="248" y="420" width="105" height="30"/>
+                                <state key="normal" title="随机生成饼状图"/>
+                                <connections>
+                                    <action selector="randomPieChartViewDataSource:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xkr-RB-Z3d"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否可以选择" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qaf-K2-pN5" userLabel="Select Enable Label">
+                                <rect key="frame" x="192" y="475" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fXy-Hl-GVj" userLabel="Select Enable Switch">
+                                <rect key="frame" x="304" y="470" width="51" height="31"/>
+                                <connections>
+                                    <action selector="selectEnableSwitchValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="rl0-ll-Jw2"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否是圆环状" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qTE-64-o1u" userLabel="Ring Style Label">
+                                <rect key="frame" x="192" y="526" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="alC-Ae-iHO" userLabel="Ring Style Switch">
+                                <rect key="frame" x="304" y="521" width="51" height="31"/>
+                                <connections>
+                                    <action selector="ringStyleSwitchValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="OXT-m2-LZf"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="是否显示文字" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzf-Hj-pzH" userLabel="Show Text Label">
+                                <rect key="frame" x="192" y="577" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="irF-r2-bQO" userLabel="Show Text Switch">
+                                <rect key="frame" x="304" y="572" width="51" height="31"/>
+                                <connections>
+                                    <action selector="showPercentageSwitchValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="itp-Wh-O2S"/>
+                                </connections>
+                            </switch>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Qaf-K2-pN5" firstAttribute="centerY" secondItem="fXy-Hl-GVj" secondAttribute="centerY" id="2Ao-kh-MbI"/>
+                            <constraint firstItem="alC-Ae-iHO" firstAttribute="top" secondItem="fXy-Hl-GVj" secondAttribute="bottom" constant="20" id="3nR-cd-K6h"/>
+                            <constraint firstItem="irF-r2-bQO" firstAttribute="trailing" secondItem="alC-Ae-iHO" secondAttribute="trailing" id="Fsh-Tu-CVh"/>
+                            <constraint firstItem="UpH-WL-gbg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="Icw-bS-XQO"/>
+                            <constraint firstItem="UpH-WL-gbg" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="1:2" id="KOU-Pl-aoX"/>
+                            <constraint firstItem="irF-r2-bQO" firstAttribute="top" secondItem="alC-Ae-iHO" secondAttribute="bottom" constant="20" id="MOP-a7-E6b"/>
+                            <constraint firstItem="fXy-Hl-GVj" firstAttribute="leading" secondItem="Qaf-K2-pN5" secondAttribute="trailing" constant="10" id="QbZ-b9-rFc"/>
+                            <constraint firstItem="qTE-64-o1u" firstAttribute="centerY" secondItem="alC-Ae-iHO" secondAttribute="centerY" id="V30-aZ-6jZ"/>
+                            <constraint firstItem="AMI-Rx-bhz" firstAttribute="centerX" secondItem="UpH-WL-gbg" secondAttribute="centerX" id="XaE-3o-mJh"/>
+                            <constraint firstItem="irF-r2-bQO" firstAttribute="leading" secondItem="bzf-Hj-pzH" secondAttribute="trailing" constant="10" id="YmZ-6k-Ivv"/>
+                            <constraint firstItem="alC-Ae-iHO" firstAttribute="trailing" secondItem="fXy-Hl-GVj" secondAttribute="trailing" id="bK1-qO-5aT"/>
+                            <constraint firstItem="bzf-Hj-pzH" firstAttribute="centerY" secondItem="irF-r2-bQO" secondAttribute="centerY" id="coR-3D-BRX"/>
+                            <constraint firstItem="fXy-Hl-GVj" firstAttribute="top" secondItem="AMI-Rx-bhz" secondAttribute="bottom" constant="20" id="kh2-vh-zDd"/>
+                            <constraint firstItem="alC-Ae-iHO" firstAttribute="leading" secondItem="qTE-64-o1u" secondAttribute="trailing" constant="10" id="kwh-zy-UKF"/>
+                            <constraint firstItem="AMI-Rx-bhz" firstAttribute="top" secondItem="UpH-WL-gbg" secondAttribute="bottom" constant="50" id="oo3-hP-xco"/>
+                            <constraint firstItem="UpH-WL-gbg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xeS-mc-F9S"/>
+                            <constraint firstItem="fXy-Hl-GVj" firstAttribute="trailing" secondItem="AMI-Rx-bhz" secondAttribute="trailing" id="zud-yI-FUN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pieChartView" destination="UpH-WL-gbg" id="T97-0K-j38"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>

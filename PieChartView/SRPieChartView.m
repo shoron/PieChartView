@@ -52,6 +52,8 @@
     self.selectedPartIndex = -1;
     self.isRingStyle = NO;
     self.showPercentage = NO;
+    
+    [self addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:nil];
 }
 
 #pragma mark - Draw PieChartView
@@ -115,8 +117,13 @@
     if (radius < 0) {
         return center;
     }
-    // TODO: 验证一下
     return CGPointMake(center.x + radius * cosf(angle), center.y + sinf(angle));
+}
+
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(nullable NSString *)keyPath ofObject:(nullable id)object change:(nullable NSDictionary<NSString*, id> *)change context:(nullable void *)context {
+    [self reloadData];
 }
 
 #pragma mark - Reload Data
@@ -164,6 +171,7 @@
 }
 
 #pragma mark - Select 
+
 // TODO: 添加 touchMove等函数
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     if (!self.selectEnable) {

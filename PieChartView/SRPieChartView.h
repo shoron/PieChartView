@@ -22,14 +22,14 @@
 - (NSUInteger)numberOfPartsInPieChartView;
 
 /**
- *  返回每个部分所占的百分比
+ *  返回每个部分的数据
  *
  *  @param pieChartView 饼状图对象
  *  @param partIndex    从起始角度按照顺时针数第几块
  *
- *  @return 该块所占的百分比
+ *  @return 该块所对应的数据
  */
-- (CGFloat)pieChartView:(SRPieChartView *)pieChartView percentageAtPartIndex:(NSUInteger)partIndex;
+- (CGFloat)pieChartView:(SRPieChartView *)pieChartView dataAtPartIndex:(NSUInteger)partIndex;
 
 @optional
 

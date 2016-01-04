@@ -12,6 +12,8 @@
 
 @interface SRPieChartView ()
 
+@property (strong, nonatomic) NSMutableArray *partDatas;
+@property (assign, nonatomic) CGFloat pieChartTotalSum;
 @property (strong, nonatomic) NSMutableArray *pieChartPartDatas;
 @property (strong, nonatomic) NSMutableArray *arcLayers;
 @property (assign, nonatomic) CGFloat startAngle;
@@ -133,10 +135,20 @@
         return;
     }
     
+    [self.partDatas removeAllObjects];
     [self.pieChartPartDatas removeAllObjects];
     self.selectedPartIndex = -1;
-    // create pie chart part data
+    self.pieChartTotalSum = 0;
+    
+    // get all datas
     NSUInteger totalParts = [self.dataSource numberOfPartsInPieChartView];
+    for (NSInteger i = 0; i < totalParts; i++) {
+        CGFloat data = [self.dataSource pieChartView:self dataAtPartIndex:i];
+        [self.partDatas addObject:[NSNumber numberWithFloat:data]];
+        self.pieChartTotalSum += data;
+    }
+    
+    // create pie chart part data
     if (totalParts <= 0) {
         return;
     }
@@ -154,7 +166,7 @@
     for (int i = 0; i < totalParts; i++) {
         SRPieChartPartData *partData = [self.pieChartPartDatas objectAtIndex:i];
         partData.startAngle = [self startAngleForPartIndex:i];
-        partData.endAngle = partData.startAngle + [self.dataSource pieChartView:self percentageAtPartIndex:i] * M_PI * 2;
+        partData.endAngle = partData.startAngle + ([self.partDatas[i] floatValue] / self.pieChartTotalSum) * M_PI * 2;
         partData.isRingStyle = self.isRingStyle;
         partData.showPercentage = self.showPercentage;
         partData.text = @"";
@@ -300,6 +312,13 @@
         _pieChartPartDatas = [[NSMutableArray alloc] init];
     }
     return _pieChartPartDatas;
+}
+
+- (NSMutableArray *)partDatas {
+    if (!_partDatas) {
+        _partDatas = [[NSMutableArray alloc] init];
+    }
+    return _partDatas;
 }
 
 @end

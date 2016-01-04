@@ -80,8 +80,8 @@
     return self.randomNumbers.count;
 }
 
-- (CGFloat)pieChartView:(SRPieChartView *)pieChartView percentageAtPartIndex:(NSUInteger)partIndex {
-    return ([self.randomNumbers[partIndex] integerValue] * 1.0) / self.numbersSum;
+- (CGFloat)pieChartView:(SRPieChartView *)pieChartView dataAtPartIndex:(NSUInteger)partIndex {
+    return [self.randomNumbers[partIndex] floatValue];
 }
 
 - (UIColor *)pieChartView:(SRPieChartView *)pieChartView colorAtPartIndex:(NSUInteger)partIndex {

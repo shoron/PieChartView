@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface SRPieChartPartData : NSObject
+@interface SRPieChartRenderData : NSObject
 
 @property (assign, nonatomic) CGFloat startAngle;
 @property (assign, nonatomic) CGFloat endAngle;

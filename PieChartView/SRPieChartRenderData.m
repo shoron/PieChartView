@@ -6,9 +6,9 @@
 //  Copyright © 2015年 com. All rights reserved.
 //
 
-#import "SRPieChartPartData.h"
+#import "SRPieChartRenderData.h"
 
-@implementation SRPieChartPartData
+@implementation SRPieChartRenderData
 
 @synthesize startAngle = _startAngle;
 @synthesize endAngle = _endAngle;

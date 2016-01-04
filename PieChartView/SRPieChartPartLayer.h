@@ -7,10 +7,10 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-#import "SRPieChartPartData.h"
+#import "SRPieChartRenderData.h"
 
 @interface SRPieChartPartLayer : CALayer
 
-@property (strong, nonatomic) SRPieChartPartData *data;
+@property (strong, nonatomic) SRPieChartRenderData *data;
 
 @end

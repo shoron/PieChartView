@@ -8,13 +8,13 @@
 
 #import "SRPieChartView.h"
 #import "SRPieChartPartLayer.h"
-#import "SRPieChartPartData.h"
+#import "SRPieChartRenderData.h"
 
 @interface SRPieChartView ()
 
 @property (strong, nonatomic) NSMutableArray *partDatas;
 @property (assign, nonatomic) CGFloat pieChartTotalSum;
-@property (strong, nonatomic) NSMutableArray *pieChartPartDatas;
+@property (strong, nonatomic) NSMutableArray *pieChartRenderDatas;
 @property (strong, nonatomic) NSMutableArray *arcLayers;
 @property (assign, nonatomic) CGFloat startAngle;
 
@@ -61,7 +61,7 @@
 #pragma mark - Draw PieChartView
 
 - (void)drawRect:(CGRect)rect {
-    NSUInteger totalPartsCount = self.pieChartPartDatas.count;
+    NSUInteger totalPartsCount = self.pieChartRenderDatas.count;
     if (totalPartsCount == 0) {
         return ;
     }
@@ -79,7 +79,7 @@
 }
 
 - (void)drawPartWithIndex:(NSUInteger)partIndex {
-    if (partIndex > self.pieChartPartDatas.count - 1) {
+    if (partIndex > self.pieChartRenderDatas.count - 1) {
         return;
     }
     
@@ -87,7 +87,7 @@
     if ([self.arcLayers containsObject:layer]) {
         [self.arcLayers removeObject:layer];
     }
-    layer.data = self.pieChartPartDatas[partIndex];
+    layer.data = self.pieChartRenderDatas[partIndex];
     [layer setNeedsDisplay];
     [self.layer addSublayer:layer];
 }
@@ -103,14 +103,14 @@
 }
 
 - (CGFloat)startAngleForPartIndex:(NSUInteger)partIndex {
-    if (partIndex > self.pieChartPartDatas.count - 1) {
+    if (partIndex > self.pieChartRenderDatas.count - 1) {
         return -1;
     }
     
     if (partIndex == 0) {
         return self.startAngle;
     } else {
-        SRPieChartPartData *pieChartPartData = self.pieChartPartDatas[partIndex - 1];
+        SRPieChartRenderData *pieChartPartData = self.pieChartRenderDatas[partIndex - 1];
         return pieChartPartData.endAngle;
     }
 }
@@ -136,7 +136,7 @@
     }
     
     [self.partDatas removeAllObjects];
-    [self.pieChartPartDatas removeAllObjects];
+    [self.pieChartRenderDatas removeAllObjects];
     self.selectedPartIndex = -1;
     self.pieChartTotalSum = 0;
     
@@ -153,8 +153,8 @@
         return;
     }
     for (int i = 0; i < totalParts; i++) {
-        SRPieChartPartData *partData = [[SRPieChartPartData alloc] init];
-        [self.pieChartPartDatas addObject:partData];
+        SRPieChartRenderData *partData = [[SRPieChartRenderData alloc] init];
+        [self.pieChartRenderDatas addObject:partData];
     }
     
     // init pie chart part data
@@ -164,7 +164,7 @@
         self.startAngle = (arc4random() % 100) * M_PI * 2.0 / 100;
     }
     for (int i = 0; i < totalParts; i++) {
-        SRPieChartPartData *partData = [self.pieChartPartDatas objectAtIndex:i];
+        SRPieChartRenderData *partData = [self.pieChartRenderDatas objectAtIndex:i];
         partData.startAngle = [self startAngleForPartIndex:i];
         partData.endAngle = partData.startAngle + ([self.partDatas[i] floatValue] / self.pieChartTotalSum) * M_PI * 2;
         partData.isRingStyle = self.isRingStyle;
@@ -214,8 +214,8 @@
         arc += M_PI * 2;
     }
     
-    for (NSUInteger i = 0; i < self.pieChartPartDatas.count; i++) {
-        SRPieChartPartData *pieChartPartData = self.pieChartPartDatas[i];
+    for (NSUInteger i = 0; i < self.pieChartRenderDatas.count; i++) {
+        SRPieChartRenderData *pieChartPartData = self.pieChartRenderDatas[i];
         if (pieChartPartData.isRingStyle) {
             if (arc > pieChartPartData.startAngle && pieChartPartData.endAngle > arc && direction < pieChartPartData.outerRadius && direction > pieChartPartData.innerRadius) {
                 return i;
@@ -231,14 +231,14 @@
 }
 
 - (void)disSelectPartIndex:(NSUInteger)partIndex {
-    if (self.pieChartPartDatas.count == 0 || partIndex == -1) {
+    if (self.pieChartRenderDatas.count == 0 || partIndex == -1) {
         return;
     }
     if (self.delegate && [self.delegate respondsToSelector:@selector(pieChartView:willSelectedPartAtIndex:)]) {
         [self.delegate pieChartView:self willSelectedPartAtIndex:partIndex];
     }
     
-    SRPieChartPartData *willDisSelectedData = self.pieChartPartDatas[partIndex];
+    SRPieChartRenderData *willDisSelectedData = self.pieChartRenderDatas[partIndex];
     willDisSelectedData.selected = NO;
     
     for (SRPieChartPartLayer *layer in self.layer.sublayers) {
@@ -250,10 +250,10 @@
 }
 
 - (void)selectPartIndex:(NSInteger)partIndex {
-    if (self.pieChartPartDatas.count == 0 || partIndex == -1) {
+    if (self.pieChartRenderDatas.count == 0 || partIndex == -1) {
         return;
     }
-    SRPieChartPartData *willSelectedData = self.pieChartPartDatas[partIndex];
+    SRPieChartRenderData *willSelectedData = self.pieChartRenderDatas[partIndex];
     willSelectedData.selected = YES;
     
     for (SRPieChartPartLayer *layer in self.layer.sublayers) {
@@ -297,7 +297,7 @@
 
 - (void)setShowPercentage:(BOOL)showPercentage {
     if (_showPercentage != showPercentage) {
-        for (SRPieChartPartData *pieChartPartData in self.pieChartPartDatas) {
+        for (SRPieChartRenderData *pieChartPartData in self.pieChartRenderDatas) {
             pieChartPartData.showPercentage = showPercentage;
         }
         _showPercentage = showPercentage;
@@ -307,11 +307,11 @@
     }
 }
 
-- (NSMutableArray *)pieChartPartDatas {
-    if (!_pieChartPartDatas) {
-        _pieChartPartDatas = [[NSMutableArray alloc] init];
+- (NSMutableArray *)pieChartRenderDatas {
+    if (!_pieChartRenderDatas) {
+        _pieChartRenderDatas = [[NSMutableArray alloc] init];
     }
-    return _pieChartPartDatas;
+    return _pieChartRenderDatas;
 }
 
 - (NSMutableArray *)partDatas {

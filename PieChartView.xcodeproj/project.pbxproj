@@ -16,7 +16,7 @@
 		B829CE951C3A15420097A5B6 /* PieChartViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B829CE941C3A15420097A5B6 /* PieChartViewTests.m */; };
 		B829CEA01C3A15420097A5B6 /* PieChartViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = B829CE9F1C3A15420097A5B6 /* PieChartViewUITests.m */; };
 		B829CEB31C3A159C0097A5B6 /* SRPieChartPartLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B829CEAE1C3A159C0097A5B6 /* SRPieChartPartLayer.m */; };
-		B829CEB41C3A159C0097A5B6 /* SRPieChartPartData.m in Sources */ = {isa = PBXBuildFile; fileRef = B829CEB01C3A159C0097A5B6 /* SRPieChartPartData.m */; };
+		B829CEB41C3A159C0097A5B6 /* SRPieChartRenderData.m in Sources */ = {isa = PBXBuildFile; fileRef = B829CEB01C3A159C0097A5B6 /* SRPieChartRenderData.m */; };
 		B829CEB51C3A159C0097A5B6 /* SRPieChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = B829CEB21C3A159C0097A5B6 /* SRPieChartView.m */; };
 /* End PBXBuildFile section */
 
@@ -56,8 +56,8 @@
 		B829CEA11C3A15420097A5B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B829CEAD1C3A159C0097A5B6 /* SRPieChartPartLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPieChartPartLayer.h; sourceTree = "<group>"; };
 		B829CEAE1C3A159C0097A5B6 /* SRPieChartPartLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPieChartPartLayer.m; sourceTree = "<group>"; };
-		B829CEAF1C3A159C0097A5B6 /* SRPieChartPartData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPieChartPartData.h; sourceTree = "<group>"; };
-		B829CEB01C3A159C0097A5B6 /* SRPieChartPartData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPieChartPartData.m; sourceTree = "<group>"; };
+		B829CEAF1C3A159C0097A5B6 /* SRPieChartRenderData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPieChartRenderData.h; sourceTree = "<group>"; };
+		B829CEB01C3A159C0097A5B6 /* SRPieChartRenderData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPieChartRenderData.m; sourceTree = "<group>"; };
 		B829CEB11C3A159C0097A5B6 /* SRPieChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPieChartView.h; sourceTree = "<group>"; };
 		B829CEB21C3A159C0097A5B6 /* SRPieChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPieChartView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -116,8 +116,8 @@
 				B829CE811C3A15420097A5B6 /* ViewController.m */,
 				B829CEAD1C3A159C0097A5B6 /* SRPieChartPartLayer.h */,
 				B829CEAE1C3A159C0097A5B6 /* SRPieChartPartLayer.m */,
-				B829CEAF1C3A159C0097A5B6 /* SRPieChartPartData.h */,
-				B829CEB01C3A159C0097A5B6 /* SRPieChartPartData.m */,
+				B829CEAF1C3A159C0097A5B6 /* SRPieChartRenderData.h */,
+				B829CEB01C3A159C0097A5B6 /* SRPieChartRenderData.m */,
 				B829CEB11C3A159C0097A5B6 /* SRPieChartView.h */,
 				B829CEB21C3A159C0097A5B6 /* SRPieChartView.m */,
 				B829CE831C3A15420097A5B6 /* Main.storyboard */,
@@ -285,7 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B829CEB41C3A159C0097A5B6 /* SRPieChartPartData.m in Sources */,
+				B829CEB41C3A159C0097A5B6 /* SRPieChartRenderData.m in Sources */,
 				B829CEB51C3A159C0097A5B6 /* SRPieChartView.m in Sources */,
 				B829CE821C3A15420097A5B6 /* ViewController.m in Sources */,
 				B829CE7F1C3A15420097A5B6 /* AppDelegate.m in Sources */,
@@ -516,6 +516,7 @@
 				B829CEA61C3A15420097A5B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B829CEA71C3A15420097A5B6 /* Build configuration list for PBXNativeTarget "PieChartViewTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +525,7 @@
 				B829CEA91C3A15420097A5B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B829CEAA1C3A15420097A5B6 /* Build configuration list for PBXNativeTarget "PieChartViewUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +534,7 @@
 				B829CEAC1C3A15420097A5B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
